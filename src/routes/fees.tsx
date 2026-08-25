@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/table";
 import { feeNotes, feeStructure } from "@/data/school";
 
-export const History = undefined;
+
 
 export const Route = createFileRoute("/fees")({
   head: () => ({

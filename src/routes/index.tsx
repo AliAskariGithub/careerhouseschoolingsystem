@@ -107,7 +107,7 @@ const stages = [
 ];
 
 function Home() {
-  const featured = newsItems[0];
+  const featured = newsItems[0]!;
 
   return (
     <>
