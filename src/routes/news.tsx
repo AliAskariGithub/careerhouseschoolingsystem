@@ -30,7 +30,7 @@ const formatDate = (value: string) =>
   new Date(value).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
 function News() {
-  const featured = newsItems.find((item) => item.featured) ?? newsItems[0];
+  const featured = newsItems.find((item) => item.featured) ?? newsItems[0]!;
   const rest = newsItems.filter((item) => item.slug !== featured.slug);
 
   return (
