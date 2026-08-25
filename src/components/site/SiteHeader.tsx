@@ -22,8 +22,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link to="/" className="flex items-center gap-3">
-          <span className="flex size-10 items-center justify-center rounded-xl bg-navy text-navy-foreground">
+        <Link to="/" className="group flex items-center gap-3">
+          <span className="icon-pop flex size-10 items-center justify-center rounded-xl bg-navy text-navy-foreground">
             <GraduationCap className="size-5" aria-hidden="true" />
           </span>
           <span className="leading-tight">
@@ -42,7 +42,7 @@ export function SiteHeader() {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+              className="nav-link rounded-md px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               activeProps={{ className: "text-brand bg-secondary" }}
             >
               {item.label}
@@ -51,7 +51,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden sm:inline-flex">
+          <Button asChild size="sm" className="press hidden sm:inline-flex">
             <Link to="/admissions">Apply Now</Link>
           </Button>
           <Sheet open={open} onOpenChange={setOpen}>
@@ -67,7 +67,7 @@ export function SiteHeader() {
                     key={item.to}
                     to={item.to}
                     onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-3 text-base font-medium text-foreground transition-colors hover:bg-secondary"
+                    className="rounded-md px-3 py-3 text-base font-medium text-foreground transition-colors hover:translate-x-1 hover:bg-secondary"
                     activeProps={{ className: "text-brand bg-secondary" }}
                     activeOptions={{ exact: item.to === "/" }}
                   >
