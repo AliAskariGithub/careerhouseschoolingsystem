@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FeesRouteImport } from './routes/fees'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as AcademicsIndexRouteImport } from './routes/academics.index'
 import { Route as AcademicsClassRouteImport } from './routes/academics.$class'
 
@@ -37,9 +39,19 @@ const AdmissionsRoute = AdmissionsRouteImport.update({
   path: '/admissions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FeesRoute = FeesRouteImport.update({
   id: '/fees',
   path: '/fees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AcademicsIndexRoute = AcademicsIndexRouteImport.update({
@@ -58,7 +70,9 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRouteWithChildren
   '/admissions': typeof AdmissionsRoute
+  '/contact': typeof ContactRoute
   '/fees': typeof FeesRoute
+  '/news': typeof NewsRoute
   '/academics/$class': typeof AcademicsClassRoute
   '/academics/': typeof AcademicsIndexRoute
 }
@@ -66,7 +80,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
+  '/contact': typeof ContactRoute
   '/fees': typeof FeesRoute
+  '/news': typeof NewsRoute
   '/academics/$class': typeof AcademicsClassRoute
   '/academics': typeof AcademicsIndexRoute
 }
@@ -76,7 +92,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/academics': typeof AcademicsRouteWithChildren
   '/admissions': typeof AdmissionsRoute
+  '/contact': typeof ContactRoute
   '/fees': typeof FeesRoute
+  '/news': typeof NewsRoute
   '/academics/$class': typeof AcademicsClassRoute
   '/academics/': typeof AcademicsIndexRoute
 }
@@ -87,7 +105,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/contact'
     | '/fees'
+    | '/news'
     | '/academics/$class'
     | '/academics/'
   fileRoutesByTo: FileRoutesByTo
@@ -95,7 +115,9 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admissions'
+    | '/contact'
     | '/fees'
+    | '/news'
     | '/academics/$class'
     | '/academics'
   id:
@@ -104,7 +126,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/academics'
     | '/admissions'
+    | '/contact'
     | '/fees'
+    | '/news'
     | '/academics/$class'
     | '/academics/'
   fileRoutesById: FileRoutesById
@@ -114,7 +138,9 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AcademicsRoute: typeof AcademicsRouteWithChildren
   AdmissionsRoute: typeof AdmissionsRoute
+  ContactRoute: typeof ContactRoute
   FeesRoute: typeof FeesRoute
+  NewsRoute: typeof NewsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -147,11 +173,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/fees': {
       id: '/fees'
       path: '/fees'
       fullPath: '/fees'
       preLoaderRoute: typeof FeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/academics/': {
@@ -190,7 +230,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AcademicsRoute: AcademicsRouteWithChildren,
   AdmissionsRoute: AdmissionsRoute,
+  ContactRoute: ContactRoute,
   FeesRoute: FeesRoute,
+  NewsRoute: NewsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
