@@ -47,7 +47,7 @@ function AcademicsIndex() {
                     key={level.slug}
                     to="/academics/$class"
                     params={{ class: level.slug }}
-                    className="group rounded-2xl border border-border bg-card p-6 transition-colors hover:border-brand"
+                    className="group hover-lift rounded-2xl border border-border bg-card p-6"
                   >
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocean">
                       {level.ageRange}

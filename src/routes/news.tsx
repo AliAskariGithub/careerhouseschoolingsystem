@@ -42,7 +42,7 @@ function News() {
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <article className="rounded-3xl border border-border bg-surface p-7 sm:p-10">
+        <article className="hover-lift rounded-3xl border border-border bg-surface p-7 sm:p-10">
           <div className="flex flex-wrap items-center gap-3">
             <Badge>{featured.category}</Badge>
             <p className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -59,7 +59,7 @@ function News() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {rest.map((item) => (
-            <article key={item.slug} className="rounded-2xl border border-border bg-card p-6">
+            <article key={item.slug} className="group hover-lift rounded-2xl border border-border bg-card p-6">
               <div className="flex flex-wrap items-center gap-3">
                 <Badge variant="secondary">{item.category}</Badge>
                 <p className="flex items-center gap-2 text-xs text-muted-foreground">

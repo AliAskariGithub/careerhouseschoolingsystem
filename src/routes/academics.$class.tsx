@@ -105,7 +105,7 @@ function ClassPage() {
           </div>
 
           <aside className="space-y-6">
-            <div className="rounded-2xl border border-border bg-surface p-6">
+            <div className="group hover-lift rounded-2xl border border-border bg-surface p-6">
               <h2 className="font-display text-lg font-bold">Class details</h2>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex items-center gap-2">
@@ -127,7 +127,7 @@ function ClassPage() {
               </Button>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="group hover-lift rounded-2xl border border-border bg-card p-6">
               <h2 className="font-display text-lg font-bold">Faculty</h2>
               <ul className="mt-4 space-y-4">
                 {level.faculty.map((member) => (

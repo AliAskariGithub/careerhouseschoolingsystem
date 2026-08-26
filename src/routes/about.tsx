@@ -104,7 +104,7 @@ function About() {
         <h2 className="accent-rule font-display text-2xl font-bold">Facilities & infrastructure</h2>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {facilities.map((facility) => (
-            <div key={facility.title} className="rounded-2xl border border-border bg-card p-6">
+            <div key={facility.title} className="group hover-lift rounded-2xl border border-border bg-card p-6">
               <h3 className="font-display text-base font-semibold">{facility.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{facility.detail}</p>
             </div>

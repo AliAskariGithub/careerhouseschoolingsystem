@@ -38,7 +38,7 @@ function Admissions() {
         <h2 className="accent-rule font-display text-2xl font-bold">The admission process</h2>
         <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {admissionSteps.map((step, i) => (
-            <li key={step.title} className="rounded-2xl border border-border bg-card p-6">
+            <li key={step.title} className="group hover-lift rounded-2xl border border-border bg-card p-6">
               <span className="flex size-9 items-center justify-center rounded-full bg-brand font-display text-sm font-bold text-brand-foreground">
                 {i + 1}
               </span>

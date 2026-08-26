@@ -169,7 +169,7 @@ function Home() {
           {highlights.map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl border border-border bg-card p-6 transition-shadow hover:shadow-md"
+              className="group hover-lift rounded-2xl border border-border bg-card p-6"
             >
               <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                 <item.icon className="size-5" aria-hidden="true" />
@@ -200,7 +200,7 @@ function Home() {
                 key={stage.name}
                 to="/academics/$class"
                 params={{ class: stage.slug }}
-                className="group rounded-2xl border border-border bg-card p-6 transition-colors hover:border-brand"
+                className="group hover-lift rounded-2xl border border-border bg-card p-6"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocean">
                   {stage.name}
@@ -272,7 +272,7 @@ function Home() {
             </h2>
             <div className="mt-8 space-y-5">
               {newsItems.slice(0, 3).map((item) => (
-                <article key={item.slug} className="rounded-2xl border border-border bg-card p-5">
+                <article key={item.slug} className="group hover-lift rounded-2xl border border-border bg-card p-5">
                   <p className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-ocean">
                     <CalendarDays className="size-3.5" aria-hidden="true" />
                     {new Date(item.date).toLocaleDateString("en-GB", {
@@ -301,7 +301,7 @@ function Home() {
             </h2>
             <div className="mt-8 space-y-4">
               {faqs.slice(0, 4).map((faq) => (
-                <div key={faq.question} className="rounded-2xl border border-border bg-card p-5">
+                <div key={faq.question} className="group hover-lift rounded-2xl border border-border bg-card p-5">
                   <h3 className="font-display text-base font-semibold">{faq.question}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{faq.answer}</p>
                 </div>

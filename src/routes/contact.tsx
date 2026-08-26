@@ -36,7 +36,7 @@ function Contact() {
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="space-y-6">
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="group hover-lift rounded-2xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-display text-lg font-bold">
                 <MapPin className="size-5 text-brand" aria-hidden="true" /> Address
               </h2>
@@ -44,7 +44,7 @@ function Contact() {
               <p className="mt-2 text-sm text-muted-foreground">{school.landmark}</p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="group hover-lift rounded-2xl border border-border bg-card p-6">
               <h2 className="flex items-center gap-2 font-display text-lg font-bold">
                 <Clock className="size-5 text-brand" aria-hidden="true" /> Timings
               </h2>
@@ -58,7 +58,7 @@ function Contact() {
               </dl>
             </div>
 
-            <div className="rounded-2xl border border-border bg-surface p-6">
+            <div className="group hover-lift rounded-2xl border border-border bg-surface p-6">
               <h2 className="font-display text-lg font-bold">Phone & email</h2>
               <ul className="mt-4 space-y-3 text-sm">
                 <li className="flex items-center gap-3">
