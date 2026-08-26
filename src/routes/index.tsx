@@ -10,9 +10,10 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/campus-hero.jpg";
 import classroomImage from "@/assets/classroom.jpg";
 import sportsImage from "@/assets/sports.jpg";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { classLevels, faqs, newsItems, school } from "@/data/school";
 
@@ -112,25 +113,25 @@ function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-navy text-navy-foreground">
-        <img
-          src={heroImage}
-          alt="Students in uniform walking into the Career House Schooling System campus in Landhi, Karachi"
-          width={1600}
-          height={912}
-          className="absolute inset-0 size-full object-cover opacity-30"
-        />
+        <HeroCarousel />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-28">
-          <p className="inline-flex items-center gap-2 rounded-full bg-brand px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-foreground">
+          <p className="reveal inline-flex items-center gap-2 rounded-full bg-brand px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-foreground">
             Admissions open
           </p>
-          <h1 className="mt-5 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl">
+          <h1
+            className="reveal mt-5 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl"
+            style={{ animationDelay: "0.12s" }}
+          >
             {school.name}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-navy-foreground/85">
+          <p
+            className="reveal mt-5 max-w-2xl text-lg text-navy-foreground/85"
+            style={{ animationDelay: "0.24s" }}
+          >
             {school.tagline} — offering Montessori through Matriculation with a balanced curriculum,
             caring teachers and a focus on character as much as marks.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="reveal mt-8 flex flex-wrap gap-3" style={{ animationDelay: "0.36s" }}>
             <Button asChild size="lg">
               <Link to="/admissions">Start an admission inquiry</Link>
             </Button>
@@ -162,21 +163,20 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
-        <h2 className="accent-rule font-display text-2xl font-bold sm:text-3xl">
+        <Reveal as="h2" className="accent-rule font-display text-2xl font-bold sm:text-3xl">
           Why families choose CHSS
-        </h2>
+        </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {highlights.map((item) => (
-            <div
-              key={item.title}
-              className="group hover-lift rounded-2xl border border-border bg-card p-6"
-            >
-              <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-                <item.icon className="size-5" aria-hidden="true" />
-              </span>
-              <h3 className="mt-4 font-display text-lg font-semibold">{item.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
-            </div>
+          {highlights.map((item, i) => (
+            <Reveal key={item.title} delay={i * 90}>
+              <div className="group hover-lift h-full rounded-2xl border border-border bg-card p-6">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+                  <item.icon className="size-5" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 font-display text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.detail}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -184,9 +184,9 @@ function Home() {
       <section className="bg-surface py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="accent-rule font-display text-2xl font-bold sm:text-3xl">
+            <Reveal as="h2" className="accent-rule font-display text-2xl font-bold sm:text-3xl">
               Programmes by level
-            </h2>
+            </Reveal>
             <Link
               to="/academics"
               className="inline-flex items-center gap-1 text-sm font-semibold text-brand hover:underline"
@@ -195,21 +195,22 @@ function Home() {
             </Link>
           </div>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {stages.map((stage) => (
-              <Link
-                key={stage.name}
-                to="/academics/$class"
-                params={{ class: stage.slug }}
-                className="group hover-lift rounded-2xl border border-border bg-card p-6"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocean">
-                  {stage.name}
-                </p>
-                <h3 className="mt-2 font-display text-lg font-bold group-hover:text-brand">
-                  {stage.detail}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">{stage.note}</p>
-              </Link>
+            {stages.map((stage, i) => (
+              <Reveal key={stage.name} delay={i * 90}>
+                <Link
+                  to="/academics/$class"
+                  params={{ class: stage.slug }}
+                  className="group hover-lift block h-full rounded-2xl border border-border bg-card p-6"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocean">
+                    {stage.name}
+                  </p>
+                  <h3 className="mt-2 font-display text-lg font-bold group-hover:text-brand">
+                    {stage.detail}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{stage.note}</p>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -236,9 +237,9 @@ function Home() {
             />
           </div>
           <div>
-            <h2 className="accent-rule font-display text-2xl font-bold sm:text-3xl">
+            <Reveal as="h2" className="accent-rule font-display text-2xl font-bold sm:text-3xl">
               Learning inside and outside the classroom
-            </h2>
+            </Reveal>
             <p className="mt-6 text-muted-foreground">
               Our teaching emphasises critical thinking, practical learning and personal
               development, so students leave prepared for higher education and competitive careers.
@@ -267,9 +268,9 @@ function Home() {
       <section className="bg-surface py-16 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2">
           <div>
-            <h2 className="accent-rule font-display text-2xl font-bold sm:text-3xl">
+            <Reveal as="h2" className="accent-rule font-display text-2xl font-bold sm:text-3xl">
               Latest news & events
-            </h2>
+            </Reveal>
             <div className="mt-8 space-y-5">
               {newsItems.slice(0, 3).map((item) => (
                 <article key={item.slug} className="group hover-lift rounded-2xl border border-border bg-card p-5">
@@ -296,9 +297,9 @@ function Home() {
           </div>
 
           <div>
-            <h2 className="accent-rule font-display text-2xl font-bold sm:text-3xl">
+            <Reveal as="h2" className="accent-rule font-display text-2xl font-bold sm:text-3xl">
               Common questions
-            </h2>
+            </Reveal>
             <div className="mt-8 space-y-4">
               {faqs.slice(0, 4).map((faq) => (
                 <div key={faq.question} className="group hover-lift rounded-2xl border border-border bg-card p-5">
