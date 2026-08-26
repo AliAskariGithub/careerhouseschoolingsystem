@@ -10,9 +10,10 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/campus-hero.jpg";
 import classroomImage from "@/assets/classroom.jpg";
 import sportsImage from "@/assets/sports.jpg";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { classLevels, faqs, newsItems, school } from "@/data/school";
 
@@ -112,13 +113,7 @@ function Home() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-navy text-navy-foreground">
-        <img
-          src={heroImage}
-          alt="Students in uniform walking into the Career House Schooling System campus in Landhi, Karachi"
-          width={1600}
-          height={912}
-          className="absolute inset-0 size-full object-cover opacity-30"
-        />
+        <HeroCarousel />
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-28">
           <p className="inline-flex items-center gap-2 rounded-full bg-brand px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brand-foreground">
             Admissions open
