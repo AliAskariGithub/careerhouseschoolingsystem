@@ -312,3 +312,77 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Strip page transition: maroon + charcoal strips that split up/down */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  pointer-events: none;
+}
+
+.page-transition-strip {
+  position: relative;
+  flex: 1 1 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.page-transition-half {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  height: 50.5%;
+  display: block;
+}
+
+.page-transition-half--top {
+  top: 0;
+  animation: strip-top 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.page-transition-half--bottom {
+  bottom: 0;
+  animation: strip-bottom 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.page-transition-strip:nth-child(odd) .page-transition-half {
+  background-color: oklch(0.32 0.115 20);
+}
+
+.page-transition-strip:nth-child(even) .page-transition-half {
+  background-color: oklch(0.2 0.008 262);
+}
+
+@keyframes strip-top {
+  0% {
+    transform: translateY(-101%);
+  }
+  40%,
+  52% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-101%);
+  }
+}
+
+@keyframes strip-bottom {
+  0% {
+    transform: translateY(101%);
+  }
+  40%,
+  52% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(101%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    display: none;
+  }
+}
