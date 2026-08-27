@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Chatbot } from "@/components/site/Chatbot";
+import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { PageTransition } from "@/components/site/PageTransition";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
@@ -136,6 +137,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
+      <LoadingScreen />
       <PageTransition />
       <Chatbot />
       <Toaster />

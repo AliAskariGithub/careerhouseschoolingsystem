@@ -386,3 +386,134 @@
     display: none;
   }
 }
+
+/* First-visit loading screen (reuses the strip wipe for its exit) */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-screen-strips {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.loading-screen-strips .page-transition-half {
+  animation: none;
+  transform: translateY(0);
+}
+
+.loading-screen-strips .page-transition-half--top.is-leaving {
+  animation: strip-leave-top 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.loading-screen-strips .page-transition-half--bottom.is-leaving {
+  animation: strip-leave-bottom 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+@keyframes strip-leave-top {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-101%);
+  }
+}
+
+@keyframes strip-leave-bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(101%);
+  }
+}
+
+.loading-screen-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--navy-foreground);
+  animation: chss-reveal 0.6s ease-out both;
+}
+
+.loading-screen-mark {
+  display: flex;
+  height: 4rem;
+  width: 4rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.25rem;
+  background-color: color-mix(in oklab, var(--brand-foreground) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--brand-foreground) 28%, transparent);
+  animation: loading-pulse 1.6s ease-in-out infinite;
+}
+
+.loading-screen-title {
+  margin-top: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.loading-screen-sub {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  opacity: 0.75;
+}
+
+.loading-screen-bar {
+  margin-top: 1.75rem;
+  display: block;
+  height: 3px;
+  width: 9rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background-color: color-mix(in oklab, var(--brand-foreground) 20%, transparent);
+}
+
+.loading-screen-bar > span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  border-radius: 999px;
+  background-color: var(--brand-foreground);
+  animation: loading-bar 1.3s ease-in-out infinite;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(260%);
+  }
+}
+
+@keyframes loading-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen {
+    display: none;
+  }
+}
