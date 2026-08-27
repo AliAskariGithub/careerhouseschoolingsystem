@@ -137,6 +137,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
       </div>
+      <LoadingScreen />
       <PageTransition />
       <Chatbot />
       <Toaster />
