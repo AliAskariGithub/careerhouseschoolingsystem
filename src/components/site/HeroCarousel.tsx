@@ -37,23 +37,33 @@ const slides = [
 const INTERVAL_MS = 3000;
 
 /**
- * Auto-advancing hero background carousel: crossfades to a new image
- * every 3s with a subtle Ken Burns zoom, dot indicators and a gentle
- * parallax shift while scrolling. Pauses on hover.
+ * Auto-advancing hero background carousel: swipes to the next image
+ * every 3s (new photo slides in from the left, previous exits right)
+ * with a subtle Ken Burns zoom, dot indicators and a gentle parallax
+ * shift while scrolling. Pauses on hover.
  */
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
   const [offset, setOffset] = useState(0);
+
+  const goTo = (next: number) =>
+    setActive((current) => {
+      if (next === current) return current;
+      setPrev(current);
+      return next;
+    });
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(
-      () => setActive((i) => (i + 1) % slides.length),
+      () => goTo((active + 1) % slides.length),
       INTERVAL_MS,
     );
     return () => window.clearInterval(id);
-  }, [paused]);
+  }, [paused, active]);
+
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
