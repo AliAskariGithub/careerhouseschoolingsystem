@@ -1,11 +1,11 @@
 import { useRouter, useRouterState } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
 const STRIPS = 6;
 /** Time for strips to fully cover the screen before navigation. */
-const COVER_MS = 820;
+const COVER_MS = 620;
 /** Full lifecycle of the reveal (open) phase. */
-const REVEAL_MS = 950;
+const REVEAL_MS = 920;
 
 type Phase = "idle" | "covering" | "revealing";
 
@@ -58,7 +58,6 @@ export function PageTransition() {
       if (href) {
         router.navigate({ to: href });
       }
-      setRunId((n) => n + 1);
       setPhase("revealing");
     }, COVER_MS);
     return () => window.clearTimeout(timer);
@@ -95,15 +94,13 @@ export function PageTransition() {
       aria-hidden="true"
     >
       {Array.from({ length: STRIPS }).map((_, i) => (
-        <div key={i} className="page-transition-strip">
-          <span
-            className="page-transition-half page-transition-half--top"
-            style={{ animationDelay: `${i * 60}ms` }}
-          />
-          <span
-            className="page-transition-half page-transition-half--bottom"
-            style={{ animationDelay: `${i * 60}ms` }}
-          />
+        <div
+          key={i}
+          className="page-transition-strip"
+          style={{ "--strip-delay": `${i * 55}ms` } as CSSProperties}
+        >
+          <span className="page-transition-half page-transition-half--top" />
+          <span className="page-transition-half page-transition-half--bottom" />
         </div>
       ))}
     </div>
