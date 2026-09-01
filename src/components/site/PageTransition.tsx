@@ -1,11 +1,11 @@
 import { useRouter, useRouterState } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
 const STRIPS = 6;
 /** Time for strips to fully cover the screen before navigation. */
-const COVER_MS = 820;
+const COVER_MS = 620;
 /** Full lifecycle of the reveal (open) phase. */
-const REVEAL_MS = 950;
+const REVEAL_MS = 920;
 
 type Phase = "idle" | "covering" | "revealing";
 
@@ -97,7 +97,7 @@ export function PageTransition() {
         <div
           key={i}
           className="page-transition-strip"
-          style={{ "--strip-delay": `${i * 55}ms` } as React.CSSProperties}
+          style={{ "--strip-delay": `${i * 55}ms` } as CSSProperties}
         >
           <span className="page-transition-half page-transition-half--top" />
           <span className="page-transition-half page-transition-half--bottom" />
