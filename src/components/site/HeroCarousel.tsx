@@ -83,20 +83,22 @@ export function HeroCarousel() {
 
   return (
     <div
-      className="absolute inset-0"
+      className="absolute inset-0 overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
       aria-label="School photo highlights"
     >
       <div
-        className="absolute -inset-y-8 inset-x-0"
+        className="absolute -inset-y-8 inset-x-0 overflow-hidden"
         style={{ transform: `translateY(${offset}px)` }}
       >
         {slides.map((slide, i) => (
           <div
             key={slide.src}
-            className={`hero-slide absolute inset-0${i === active ? " is-active" : ""}`}
+            className={`hero-slide absolute inset-0${
+              i === active ? " is-active" : i === prev ? " is-leaving" : ""
+            }`}
             aria-hidden={i !== active}
           >
             <img
@@ -118,7 +120,8 @@ export function HeroCarousel() {
             type="button"
             aria-label={`Show photo ${i + 1}`}
             aria-current={i === active}
-            onClick={() => setActive(i)}
+            onClick={() => goTo(i)}
+
             className={`hero-dot h-1.5 rounded-full ${
               i === active
                 ? "w-6 bg-brand"
