@@ -339,12 +339,28 @@
 
 .page-transition-half--top {
   top: 0;
-  animation: strip-top 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
 .page-transition-half--bottom {
   bottom: 0;
-  animation: strip-bottom 0.7s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+/* Phase 1: strips sweep in and hold, covering the page before navigation */
+.page-transition--covering .page-transition-half--top {
+  animation: strip-enter-top 0.5s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.page-transition--covering .page-transition-half--bottom {
+  animation: strip-enter-bottom 0.5s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+/* Phase 2: halves split away, revealing the new page */
+.page-transition--revealing .page-transition-half--top {
+  animation: strip-leave-top 0.6s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+
+.page-transition--revealing .page-transition-half--bottom {
+  animation: strip-leave-bottom 0.6s cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
 .page-transition-strip:nth-child(odd) .page-transition-half {
@@ -355,31 +371,24 @@
   background-color: oklch(0.2 0.008 262);
 }
 
-@keyframes strip-top {
-  0% {
+@keyframes strip-enter-top {
+  from {
     transform: translateY(-101%);
   }
-  40%,
-  52% {
+  to {
     transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-101%);
   }
 }
 
-@keyframes strip-bottom {
-  0% {
+@keyframes strip-enter-bottom {
+  from {
     transform: translateY(101%);
   }
-  40%,
-  52% {
+  to {
     transform: translateY(0);
   }
-  100% {
-    transform: translateY(101%);
-  }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .page-transition {
