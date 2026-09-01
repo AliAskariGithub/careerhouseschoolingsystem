@@ -58,7 +58,6 @@ export function PageTransition() {
       if (href) {
         router.navigate({ to: href });
       }
-      setRunId((n) => n + 1);
       setPhase("revealing");
     }, COVER_MS);
     return () => window.clearTimeout(timer);
