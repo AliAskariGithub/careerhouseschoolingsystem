@@ -94,15 +94,13 @@ export function PageTransition() {
       aria-hidden="true"
     >
       {Array.from({ length: STRIPS }).map((_, i) => (
-        <div key={i} className="page-transition-strip">
-          <span
-            className="page-transition-half page-transition-half--top"
-            style={{ animationDelay: `${i * 60}ms` }}
-          />
-          <span
-            className="page-transition-half page-transition-half--bottom"
-            style={{ animationDelay: `${i * 60}ms` }}
-          />
+        <div
+          key={i}
+          className="page-transition-strip"
+          style={{ "--strip-delay": `${i * 55}ms` } as React.CSSProperties}
+        >
+          <span className="page-transition-half page-transition-half--top" />
+          <span className="page-transition-half page-transition-half--bottom" />
         </div>
       ))}
     </div>
