@@ -3,9 +3,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const STRIPS = 6;
 /** Time for strips to fully cover the screen before navigation. */
-const COVER_MS = 550;
+const COVER_MS = 820;
 /** Full lifecycle of the reveal (open) phase. */
-const REVEAL_MS = 1000;
+const REVEAL_MS = 950;
 
 type Phase = "idle" | "covering" | "revealing";
 
