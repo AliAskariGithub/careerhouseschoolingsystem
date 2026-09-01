@@ -37,23 +37,33 @@ const slides = [
 const INTERVAL_MS = 3000;
 
 /**
- * Auto-advancing hero background carousel: crossfades to a new image
- * every 3s with a subtle Ken Burns zoom, dot indicators and a gentle
- * parallax shift while scrolling. Pauses on hover.
+ * Auto-advancing hero background carousel: swipes to the next image
+ * every 3s (new photo slides in from the left, previous exits right)
+ * with a subtle Ken Burns zoom, dot indicators and a gentle parallax
+ * shift while scrolling. Pauses on hover.
  */
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
   const [offset, setOffset] = useState(0);
+
+  const goTo = (next: number) =>
+    setActive((current) => {
+      if (next === current) return current;
+      setPrev(current);
+      return next;
+    });
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(
-      () => setActive((i) => (i + 1) % slides.length),
+      () => goTo((active + 1) % slides.length),
       INTERVAL_MS,
     );
     return () => window.clearInterval(id);
-  }, [paused]);
+  }, [paused, active]);
+
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -73,20 +83,22 @@ export function HeroCarousel() {
 
   return (
     <div
-      className="absolute inset-0"
+      className="absolute inset-0 overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       aria-roledescription="carousel"
       aria-label="School photo highlights"
     >
       <div
-        className="absolute -inset-y-8 inset-x-0"
+        className="absolute -inset-y-8 inset-x-0 overflow-hidden"
         style={{ transform: `translateY(${offset}px)` }}
       >
         {slides.map((slide, i) => (
           <div
             key={slide.src}
-            className={`hero-slide absolute inset-0${i === active ? " is-active" : ""}`}
+            className={`hero-slide absolute inset-0${
+              i === active ? " is-active" : i === prev ? " is-leaving" : ""
+            }`}
             aria-hidden={i !== active}
           >
             <img
@@ -108,7 +120,8 @@ export function HeroCarousel() {
             type="button"
             aria-label={`Show photo ${i + 1}`}
             aria-current={i === active}
-            onClick={() => setActive(i)}
+            onClick={() => goTo(i)}
+
             className={`hero-dot h-1.5 rounded-full ${
               i === active
                 ? "w-6 bg-brand"
